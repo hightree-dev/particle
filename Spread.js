@@ -9,11 +9,14 @@ canvas.width = width * dpr;
 canvas.height = height * dpr;
 canvas.style.width = `${width}px`;
 canvas.style.height = `${height}px`;
-canvas.style.border = '1px solid black';
+canvas.style.padding = '0px';
+canvas.style.margin = '0px';
 
 ctx.scale(dpr, dpr);
 
 document.body.style.margin = '0px';
+document.body.style.padding = '0px';
+
 document.body.appendChild(canvas);
 
 class Particle {
@@ -65,11 +68,17 @@ window.onresize = () => {
     canvas.height = height * dpr;
 };
 
-const particles = [];
+const particles = []
+
 
 function animate()
 {   
     ctx.clearRect(0, 0, canvas.width, canvas.height);
+    ctx.textAlign = 'center';
+    ctx.textBaseline = "middle";
+    ctx.font = '30px Arial';
+    ctx.fillStyle = 'black';
+    ctx.fillText('Click!', width / 2, height / 2);
     particles.forEach(p => {
         p.update();
         p.draw(ctx);
